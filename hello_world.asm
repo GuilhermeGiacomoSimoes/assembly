@@ -1,17 +1,16 @@
-    global start 
-    section .text
+section .data
+	text db "Hello world", 10
 
-start:
-    mov rax, 0x02000004
-    mov rdi, 1
-    mov rsi, message
-    mov rdx, 13
-    syscall
-    mov rax, 0x02000001
-    xor rdi, rdi
-    syscall
+section .text
+	global _start
 
-    section .data
+_start:
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, text
+	mov rdx, 14
+	syscall 
 
-message:
-    db  "Hello, world", 10
+	mov rax, 60
+	mov rdi, 0
+	syscall
